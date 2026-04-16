@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ร้านค้าออนไลน์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- <div class="header">
+            <h2>สินค้ามาใหม่</h2>
+            <p>ชี้หรือคลิกที่รูปภาพเพื่อดูรายละเอียดและสั่งซื้อ</p>
+        </div> -->
+        <div class="header"
+            style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 40px; padding: 20px 0;">
+            <img src="/LOGO.jpg" alt="โลโก้ร้าน"
+                style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+            <h2 style="margin-bottom: 5px;">บังขายดี 888</h2>
+            <p style="color: #666;">ชี้หรือคลิกที่รูปภาพเพื่อดูรายละเอียดและสั่งซื้อ</p>
+        </div>
+
+        <div class="product-grid" id="product-container"></div>
+    </div>
+
+    <script src="products.js"></script>
+
+    <script>
+        // หา Element ที่เราจะเอาสินค้าไปใส่
+        const container = document.getElementById('product-container');
+
+        // ฟังก์ชันสร้างการ์ดสินค้า
+        function renderProducts() {
+            // ล้างข้อมูลเก่าก่อน (ถ้ามี)
+            container.innerHTML = '';
+
+            // วนลูปข้อมูลใน array productsData
+            productsData.forEach(product => {
+                // สร้าง HTML สำหรับสินค้าแต่ละชิ้น
+                const cardHTML = `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <div class="overlay">
+                            <div class="product-info">
+                                <div class="product-title">${product.name}</div>
+                                <div class="product-price">฿ ${product.price}</div>
+                            </div>
+                            <a href="${product.lineLink}" target="_blank" class="btn-line">สั่งซื้อผ่าน LINE</a>
+                        </div>
+                    </div>
+                `;
+
+                // นำ HTML ที่สร้างเสร็จไปต่อท้ายใน container
+                container.innerHTML += cardHTML;
+            });
+        }
+
+        // เรียกใช้งานฟังก์ชันเมื่อโหลดหน้าเว็บ
+        renderProducts();
+    </script>
+
+</body>
+
+</html>
